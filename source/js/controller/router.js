@@ -23,7 +23,7 @@ export default class Router {
     utils.showScreen(utils.newCentralContainer(splash));
     splash.start();
     try {
-      questData = await Loader.loadData();
+      questData = await Loader.testData();
       Router.showWellcom();
     } catch (e) {
       Router.showError(e);

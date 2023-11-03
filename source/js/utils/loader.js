@@ -1,4 +1,7 @@
+import GAME_DATA from '../tmp/game-data.js'
+
 const SERVER_URL = 'http://localhost:3001';
+
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -18,6 +21,10 @@ const adaptDataForServer = (resultGame) => {
 const toJSON = (res) => res.json();
 
 export default class Loader {
+  static testData() {
+    return GAME_DATA;
+  }
+
   static loadData() {
     return window.fetch(`${SERVER_URL}/server`)
       .then(checkStatus)
