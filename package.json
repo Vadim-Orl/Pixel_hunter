@@ -71,6 +71,7 @@
     "rev-del": "^2.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "sass": "^1.55.0",
+    "typescript": "^5.3.3",
     "webpack": "^5.88.2",
     "webpack-stream": "^7.0.0"
   },

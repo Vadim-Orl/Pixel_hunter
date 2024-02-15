@@ -50,3 +50,5 @@ export default class Loader {
       .then(checkStatus)
   }
 }
+
+

@@ -20,7 +20,7 @@ export default class GameView extends AbstractView {
 
   bind() {
     const gameForm = this.element.querySelector('.game__content');
-    console.log(this.data.type)
+    console.dir(this.data)
     switch (this.data.type) {
       case 'singleQuestion': {
         gameForm.addEventListener('input', (evt) => {

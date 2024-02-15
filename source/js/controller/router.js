@@ -16,6 +16,7 @@ let questResult;
 export default class Router {
   static start() {
     Router.load().catch(Router.showError);
+    console.log(Array(6).fill('1').map((el)=>el))
   }
 
   static async load() {
