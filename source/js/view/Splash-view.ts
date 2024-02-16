@@ -1,8 +1,8 @@
 import AbstractView from './Abstract-view.js';
 
 export default class SplashScreen extends AbstractView {
-  timeout: NodeJS.Timeout;
-  
+  timeout: NodeJS.Timeout | undefined;
+
   constructor(private cursor = 0, private symbolsSeg = `/-\\|`) {
     super();
   }

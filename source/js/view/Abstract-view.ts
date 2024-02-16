@@ -9,7 +9,7 @@ const render = (template: string, tag: string, classes: string[]) => {
 };
 
 abstract class AbstractView {
-  _element: HTMLElement;
+  _element: HTMLElement | undefined;
 
   constructor(public tag = 'div', public classes = [''] ) {
     if (new.target === AbstractView) {

@@ -1,8 +1,6 @@
 import { IGameData } from "../../types/types";
 
 
-
-
 const GAME_DATA: IGameData[] = [
   {
     level: 0,

@@ -78,7 +78,7 @@ export default class GameScreen {
     }
   }
 
-  onAnswer(...answer) {
+  onAnswer(...answer: any) {
     this.stopGame();
 
     const questionBd = this.model.data[this.model.getCurrentLevel()];
@@ -88,7 +88,7 @@ export default class GameScreen {
     switch (questionBd.type) {
       case 'singleQuestion':
       case 'doubleQuestion':
-        isCorrectAnsw = answer.every((el, index) => {
+        isCorrectAnsw = answer.every((el: any, index: number) => {
           return (questionBd.options[index].answer === el)
         })
         break;
@@ -97,7 +97,7 @@ export default class GameScreen {
         findElement = questionBd.options.find((el) => {
           return el.alt === answer[0].alt;
         })
-        isCorrectAnsw = (findElement.answer === 'paint');
+        isCorrectAnsw = (findElement?.answer === 'paint');
 
         break;
       default: throw new Error('Could not process user response. Check database');
@@ -117,7 +117,7 @@ export default class GameScreen {
 
   updateHeader() {
     const header = new HeaderView(this.model.state, showPlayerHeader);
-    this.root.replaceChild(header.element, this.header.element)
+    this.header && this.root.replaceChild(header.element, this.header.element)
     header.onClick = () => {
       this.stopGame();
       Router.showWellcom();
@@ -125,14 +125,14 @@ export default class GameScreen {
     this.header = header;
   }
 
-  changeContentView(view) {
-    this.root.replaceChild(view.element, this.content.element);
+  changeContentView(view: any) {
+    this.content && this.root.replaceChild(view.element, this.content.element);
     this.content = view;
   }
 
   updateStatistic() {
     const statistic = new StatisticView(this.model.state);
-    this.root.replaceChild(statistic.element, this.statistic.element);
+    this.statistic && this.root.replaceChild(statistic.element, this.statistic.element);
     this.statistic = statistic;
   }
 }

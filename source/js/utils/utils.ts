@@ -4,12 +4,12 @@ const screenContainer = document.createElement('div');
 screenContainer.classList.add('central__content');
 
 export default {
-  showScreen: (element) => {
+  showScreen: (element: Element) => {
     clearMainElement();
-    mainNode.append(element);
+    mainNode?.append(element);
   },
 
-  newCentralContainer(...listEl) {
+  newCentralContainer(...listEl: any[]) {
     screenContainer.innerHTML = '';
     listEl.forEach((el) => {
       screenContainer.appendChild(el.element);
@@ -20,5 +20,5 @@ export default {
 
 // helperes
 const clearMainElement = () => {
-  mainNode.innerHTML = '';
+  mainNode && (mainNode.innerHTML = '');
 };

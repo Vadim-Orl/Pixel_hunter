@@ -1,11 +1,11 @@
-const nodeGameOptions = (option, typeQuestion) => {
+const nodeGameOptions = (option: any, typeQuestion: any) => {
   return `<div class="game__option">
           <img src="${option.src}" alt="${option.alt}" >
            ${nodeGameAnswer(option.inputName)}
           </div>`
 }
 
-const nodeGameAnswer = (inputName) => {
+const nodeGameAnswer = (inputName: any) => {
   if (inputName) {
     return `<label class="game__answer game__answer--photo">
               <input name="${inputName}" type="radio" value="photo">
@@ -20,21 +20,21 @@ const nodeGameAnswer = (inputName) => {
 }
 
 const typeQuestion = {
-  singleQuestion: (options) => {
+  singleQuestion: (options: any) => {
     return `<form class="game__content game__content--wide"">
-                ${options.map((el) => nodeGameOptions(el, 'singleQuestion')).join('')}
+                ${options.map((el: any) => nodeGameOptions(el, 'singleQuestion')).join('')}
                 </form>`
   },
 
-  doubleQuestion: (options) => {
+  doubleQuestion: (options: any) => {
     return `<form class="game__content">
-                ${options.map((el) => nodeGameOptions(el, 'singleQuestion')).join('')}
+                ${options.map((el:any) => nodeGameOptions(el, 'singleQuestion')).join('')}
                 </form>`
   },
 
-  tripleQuestion: (options) => {
+  tripleQuestion: (options: any) => {
     return `<form class="game__content game__content--triple">
-                ${options.map((el) => nodeGameOptions(el, 'tripleQuestion')).join('')}
+                ${options.map((el:any) => nodeGameOptions(el, 'tripleQuestion')).join('')}
                 </form>`
   },
 }

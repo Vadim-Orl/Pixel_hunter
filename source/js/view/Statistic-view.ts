@@ -9,7 +9,7 @@ export default class StatisticView extends AbstractView {
   get template() {
     return `
             <ul class="stats">
-            ${this.state.results.map((el) => {
+            ${this.state.results.map((el: any) => {
     return `<li class="stats__result stats__result--${el}"></li>`
   })}
 

@@ -26,12 +26,12 @@ export default class RulesView extends AbstractView {
               `
   }
 
-  onAnswer(inputName) {
+  onAnswer(inputName: any) {
     Application.showGame(inputName);
   }
 
   bind() {
-    const rulesForm: HTMLFormElement| undefined | null = this._element.querySelector('.rules__form');
+    const rulesForm: HTMLFormElement| undefined | null = this._element?.querySelector('.rules__form');
     const inputName: HTMLInputElement | undefined | null = rulesForm?.querySelector('.rules__input')
     const btnSubmitForm = rulesForm?.querySelector('button');
 

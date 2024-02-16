@@ -58,9 +58,9 @@ export default class GameView extends AbstractView {
     }
   }
 
-  onAnswer(value: string| Element | null, string?) {
-    throw new Error('Method not implemented.');
-  }
+  // onAnswer() {
+  //   throw new Error('Method not implemented.');
+  // }
 
   resizeImages() {
     const images = this.element.querySelectorAll('.game__option img') as NodeListOf<HTMLImageElement>;

@@ -8,7 +8,7 @@ export interface IQuestModel {
   resultPoints: number;
   isFail: boolean | null;
   data: IGameData[],
-  // readonly state: IStateGame,
+  readonly state: IStateGame,
   playerName: string
 
   hasNextLevel(): boolean,

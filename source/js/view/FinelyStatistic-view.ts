@@ -34,12 +34,13 @@ const statsBonusHtml = {
 }
 
 export default class FinelyStatisticView extends AbstractView {
-  private _scoreBoardContainer: HTMLDivElement;
+  private _scoreBoardContainer: HTMLDivElement | null;
   setStats: string[];
 
   constructor(private game: IQuestModel, private isFail: boolean) {
     super('div', ['result'])
     this.setStats = game.state.results;
+    this._scoreBoardContainer = null;
   }
 
   get template() {
@@ -51,7 +52,7 @@ export default class FinelyStatisticView extends AbstractView {
         <td class="result__number">1.</td>
         <td>
           <ul class="stats">
-          ${this.game.state.results.map((el) => {
+          ${this.game.state.results.map((el: any) => {
     return `<li class="stats__result stats__result--${el}"></li>`
   })}
           </ul>
@@ -101,24 +102,27 @@ export default class FinelyStatisticView extends AbstractView {
     this._scoreBoardContainer = this.element.querySelector('div.scoreBoard')!
   }
 
-  showScores(scores) {
-    this._scoreBoardContainer.innerHTML = `
-    <table class="result__table">
-      ${scores.reverse().map((it, i) => `
-      <tr>
-        <td class="result__number">${i + 2}.</td>
-        <td>
-          <ul class="stats">
-          ${it.results.map((el) => {
-    return `<li class="stats__result stats__result--${el}"></li>`
-  })}
-          </ul>
-        </td>
-        <td class="result__total">${it.resultPoints}</td>
-        <td class="result__total  result__total--final">${!it.isFail ? 'WIN' : 'FAIL'}</td>
-        </tr>
-        `).join('')}
+  showScores(scores: any) {
+    if ( this._scoreBoardContainer) {
+      this._scoreBoardContainer.innerHTML = `
+      <table class="result__table">
+        ${scores.reverse().map((it:any, i: number) => `
+        <tr>
+          <td class="result__number">${i + 2}.</td>
+          <td>
+            <ul class="stats">
+            ${it.results.map((el:any) => {
+      return `<li class="stats__result stats__result--${el}"></li>`
+    })}
+            </ul>
+          </td>
+          <td class="result__total">${it.resultPoints}</td>
+          <td class="result__total  result__total--final">${!it.isFail ? 'WIN' : 'FAIL'}</td>
+          </tr>
+          `).join('')}
 
-    </table>`
-  }
+      </table>`
+    }
+    }
+
 }

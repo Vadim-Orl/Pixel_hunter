@@ -5,7 +5,7 @@ type TResul = 'wrong' | 'slow' |'fast'| 'correct' | 'unknown'
 
 
 export interface IStateGame {
-   results: string[],
+   results: any,
    level: number,
    lives: number,
    time: number,
@@ -27,9 +27,9 @@ const resultGame = (game: IStateGame): number => {
   }
 
   let summ = 0;
-  game.results.forEach(element => {
+  game.results.forEach((element: TResul) => {
     summ += CONSTANTS.LIBRARY_ANSWER_POINT[element];
-    element === CONSTANTS.LIBRARY_TYPE_ANSWERS.fast|| element === CONSTANTS.LIBRARY_TYPE_ANSWERS.slow ? summ += 100 : summ;
+    element === CONSTANTS.LIBRARY_TYPE_ANSWERS.fast || element === CONSTANTS.LIBRARY_TYPE_ANSWERS.slow ? summ += 100 : summ;
   });
 
   summ += game.lives * CONSTANTS.LIBRARY_ANSWER_POINT.balanceLivePoint;

@@ -9,7 +9,6 @@ import HeaderView from '../view/Header-view';
 import SplashScreen from '../view/Splash-view.js';
 import ErrorView from '../view/Error-view.js';
 import Loader from '../utils/loader.js';
-import { IStateGame } from '../utils/bisnesFunction.js';
 import GreetingView from '../view/Greeting-view.js';
 import { IGameData } from '../../types/types.js';
 
