@@ -1,13 +1,42 @@
+import { isGameModel } from '../../types/type-guards.js';
+import { IGameData } from '../../types/types.js';
 import {
-  INITIAL_GAME, changeLevel, tick, resultGame, answer, decLives,
+  INITIAL_GAME, changeLevel, tick, resultGame, answer, decLives, IStateGame,
 } from '../utils/bisnesFunction.js';
 
-export default class QuestModel {
-  private _state: any;
+export interface IQuestModel {
+  resultPoints: number;
+  isFail: boolean | null;
+  data: IGameData[],
+  // readonly state: IStateGame,
+  playerName: string
 
-  constructor(public data: Date, public playerName: string) {
+  hasNextLevel(): boolean,
+  nextLevel():  IStateGame | undefined,
+  decLives(): IStateGame | undefined,
+  getLives(): number,
+  getCurrentLevel(): number,
+  gameOver(): IStateGame,
+  restart(): void,
+  isGameOver(): boolean,
+  tick(): void,
+  answer(isCorrectAnsw: boolean, timeAnswer: number): void,
+  resultGame(): number
+}
+
+
+export default class QuestModel implements IQuestModel {
+  private  _state: IStateGame;
+  resultPoints: number;
+  isFail: boolean;
+
+  constructor(public data: IGameData[], public playerName: string) {
     this.restart();
+    this.resultPoints = 0;
+    this.isFail = false;
+    this._state = INITIAL_GAME;
   }
+
 
   get state() {
     return Object.freeze(this._state);
@@ -18,11 +47,17 @@ export default class QuestModel {
   }
 
   nextLevel() {
-    return this._state = changeLevel(this._state, this._state.level + 1);
+    const newState = changeLevel(this._state, this._state.level + 1)
+    if (isGameModel(newState)) {
+      return this._state =newState;
+    }
   }
 
   decLives() {
-    return this._state = decLives(this._state);
+    const newState = decLives(this._state)
+    if (isGameModel(newState)) {
+      return this._state = newState;
+    }
   }
 
   getLives() {
@@ -49,7 +84,7 @@ export default class QuestModel {
     this._state = tick(this._state);
   }
 
-  answer(isCorrectAnsw, timeAnswer) {
+  answer(isCorrectAnsw: boolean, timeAnswer: number) {
     this._state = answer(this._state, isCorrectAnsw, timeAnswer);
   }
 

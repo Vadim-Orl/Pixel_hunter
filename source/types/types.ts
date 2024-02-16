@@ -1,3 +1,5 @@
+// import { IInitialGame } from "../js/utils/bisnesFunction"
+
 export enum TypeInputName {
   question1 = 'question1',
   question2 = 'question2'
@@ -24,4 +26,11 @@ export interface IGameData {
   type: ITypeQuestion,
   task: string,
   options: IOption[]
+}
+
+export interface IResultGame {
+  isFail: boolean,
+  resultPoints: number,
+  results: string[],
+  id: number
 }

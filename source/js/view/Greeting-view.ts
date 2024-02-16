@@ -3,7 +3,7 @@ import Application from "../controller/router.js";
 
 export default class GreetingView extends AbstractView {
   constructor() {
-    super('div', { classes: ['greeting', 'central--blur'] })
+    super('div', ['greeting', 'central--blur'])
   }
 
   get template() {
@@ -27,9 +27,9 @@ export default class GreetingView extends AbstractView {
   }
 
   bind() {
-    this._element.querySelector('.greeting__continue').addEventListener('click', (evt) => {
-      evt.preventDefault();
-      this.onAnswer()
-    })
+      this._element.querySelector('.greeting__continue')?.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        this.onAnswer()
+      })
   }
 }

@@ -3,7 +3,7 @@ import Application from '../controller/router.js';
 
 export default class IntroView extends AbstractView {
   constructor() {
-    super('div', { classes: ['intro'] })
+    super('div', ['intro'])
   }
 
   get template() {
@@ -17,7 +17,7 @@ export default class IntroView extends AbstractView {
   }
 
   bind() {
-    this._element.querySelector('.intro__asterisk').addEventListener('click', (evt) => {
+    this._element.querySelector('.intro__asterisk')?.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.onAnswer()
     })

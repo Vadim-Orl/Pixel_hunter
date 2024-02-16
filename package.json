@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "dev": "npm start",
     "lint": "eslint ./source/js",
     "lint:fix": "eslint ./source/js --fix",
     "start": "gulp",

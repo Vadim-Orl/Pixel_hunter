@@ -1,9 +1,8 @@
 import AbstractView from './Abstract-view.js';
 
 export default class ErrorView extends AbstractView {
-  constructor(error) {
-    super('div', { classes: ['end'] });
-    this.error = error;
+  constructor(private error: Error) {
+    super('div', ['end']);
   }
 
   get template() {

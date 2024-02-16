@@ -1,7 +1,11 @@
-import { CONSTANTS } from "./constants.js";
+import { isGameModel } from "../../types/type-guards.js";
+import { CONSTANTS, TLIBRARY_TYPE_ANSWERS } from "./constants.js";
 
-export interface IInitialGame {
-   results?,
+type TResul = 'wrong' | 'slow' |'fast'| 'correct' | 'unknown'
+
+
+export interface IStateGame {
+   results: string[],
    level: number,
    lives: number,
    time: number,
@@ -9,15 +13,15 @@ export interface IInitialGame {
 }
 
 
-const INITIAL_GAME: IInitialGame = Object.freeze({
-  results: Object.freeze(new Array(CONSTANTS.OPTION_GAME.MAX_QUESTIONS).fill(CONSTANTS.LIBRARY_TYPE_ANSWERS.unknown)),
+const INITIAL_GAME: IStateGame = Object.freeze({
+  results: new Array(CONSTANTS.OPTION_GAME.MAX_QUESTIONS).fill(CONSTANTS.LIBRARY_TYPE_ANSWERS.unknown),
   level: CONSTANTS.OPTION_GAME.START_LEVEL,
   lives: CONSTANTS.OPTION_GAME.MAX_LIVES,
   time: CONSTANTS.OPTION_GAME.TIME_FOR_QUESTION,
   questions: CONSTANTS.OPTION_GAME.MAX_QUESTIONS
 });
 
-const resultGame = (game: IInitialGame) => {
+const resultGame = (game: IStateGame): number => {
   if (game.results.length < CONSTANTS.OPTION_GAME.MAX_QUESTIONS) {
     return -1
   }
@@ -34,7 +38,7 @@ const resultGame = (game: IInitialGame) => {
 }
 
 
-const changeLevel = (game: IInitialGame, level: number) => {
+const changeLevel = (game: IStateGame, level: number): number | IStateGame => {
   if (level < 0) {
     return game.level;
   }
@@ -49,9 +53,9 @@ const changeLevel = (game: IInitialGame, level: number) => {
   return newGame;
 }
 
-const decLives = (game: IInitialGame) => {
+const decLives = (game: IStateGame): IStateGame | Error => {
   if (game.lives < 1) {
-    return 0;
+    return new Error('Error lives < 1')
   }
   console.log(game)
   const newLives = game.lives - 1;
@@ -61,18 +65,23 @@ const decLives = (game: IInitialGame) => {
   return newGame;
 }
 
-const tick = (game: IInitialGame) => {
+const tick = (game: IStateGame) => {
   const newGame = { ...game };
   newGame.time -= 1;
   return newGame;
 }
 
-const answer = (game: IInitialGame, isCorrectAnsw: boolean, timeAnswer: number) => {
-  let newGame = JSON.parse(JSON.stringify(game))
+const answer = (game: IStateGame, isCorrectAnsw: boolean, timeAnswer: number) => {
+  let newGame: IStateGame = JSON.parse(JSON.stringify(game))
 
   if (!isCorrectAnsw) {
     newGame.results[newGame.level] = CONSTANTS.LIBRARY_TYPE_ANSWERS.wrong;
-    newGame = decLives(newGame)
+
+    const tmpNewGame: Error | IStateGame = decLives(newGame);
+
+    if (isGameModel(tmpNewGame)){
+      newGame = tmpNewGame
+    }
   } else {
     switch (true) {
       case (timeAnswer <= 3): {

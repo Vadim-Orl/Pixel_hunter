@@ -1,8 +1,10 @@
 import AbstractView from './Abstract-view.js';
 import { CONSTANTS } from '../utils/constants.js';
+import { IStateGame } from '../utils/bisnesFunction.js';
+import { IQuestModel } from '../model/quest-model.js';
 
 const statsBonusHtml = {
-  bonusSpeed: (countFast) => {
+  bonusSpeed: (countFast: number) => {
     return `<tr>
               <td></td>
               <td class="result__extra">Бонус за скорость:</td>
@@ -11,7 +13,7 @@ const statsBonusHtml = {
               <td class="result__total">${countFast * CONSTANTS.LIBRARY_ANSWER_POINT.fast}</td>
             </tr>`
   },
-  bonusLives: (coutLives) => {
+  bonusLives: (coutLives: number) => {
     return `<tr>
               <td></td>
               <td class="result__extra">Бонус за жизни:</td>
@@ -20,7 +22,7 @@ const statsBonusHtml = {
               <td class="result__total">${coutLives * CONSTANTS.LIBRARY_ANSWER_POINT.balanceLivePoint}</td>
             </tr>`
   },
-  fineSlow: (countSlow) => {
+  fineSlow: (countSlow: number) => {
     return ` <tr>
                 <td></td>
                 <td class="result__extra">Штраф за медлительность:</td>
@@ -32,11 +34,11 @@ const statsBonusHtml = {
 }
 
 export default class FinelyStatisticView extends AbstractView {
-  constructor(game, isFail) {
-    super('div', { classes: ['result'] })
+  private _scoreBoardContainer: HTMLDivElement;
+  setStats: string[];
 
-    this.isFail = isFail;
-    this.game = game;
+  constructor(private game: IQuestModel, private isFail: boolean) {
+    super('div', ['result'])
     this.setStats = game.state.results;
   }
 
@@ -63,13 +65,10 @@ export default class FinelyStatisticView extends AbstractView {
     }
 
     const countFast = (this.setStats.filter((el) => el === CONSTANTS.LIBRARY_TYPE_ANSWERS.fast)).length
-    console.log(countFast)
 
     const countSlow = (this.setStats.filter((el) => el === CONSTANTS.LIBRARY_TYPE_ANSWERS.slow)).length
-    console.log(countSlow)
 
     const countCorrect = (this.setStats.filter((el) => el !== CONSTANTS.LIBRARY_TYPE_ANSWERS.wrong && el !== CONSTANTS.LIBRARY_TYPE_ANSWERS.unknown)).length
-    console.dir(countCorrect)
 
     return `
 
@@ -99,7 +98,7 @@ export default class FinelyStatisticView extends AbstractView {
   }
 
   bind() {
-    this._scoreBoardContainer = this.element.querySelector('div.scoreBoard')
+    this._scoreBoardContainer = this.element.querySelector('div.scoreBoard')!
   }
 
   showScores(scores) {

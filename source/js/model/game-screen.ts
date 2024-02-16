@@ -2,13 +2,20 @@ import GameView from '../view/Game-view.js';
 import Router from '../controller/router.js';
 import HeaderView from '../view/Header-view.js';
 import StatisticView from '../view/Statistic-view.js';
+import { IQuestModel } from './quest-model.js';
 
 const ONE_SECOND = 1000;
 const showPlayerHeader = true;
 
 export default class GameScreen {
-  constructor(model) {
-    this.model = model;
+  root: HTMLDivElement;
+  private _timer: null | NodeJS.Timeout;
+  private _timeAnswer: number;
+  header: HeaderView | undefined;
+  content: GameView | undefined;
+  statistic: StatisticView | undefined;
+
+  constructor(private model: IQuestModel) {
     this.root = document.createElement('div');
 
     this._timer = null;
@@ -51,10 +58,10 @@ export default class GameScreen {
   }
 
   stopGame() {
-    clearInterval(this._timer);
+    this._timer && clearInterval(this._timer);
   }
 
-  endGame(isFail) {
+  endGame(isFail: boolean) {
     this.model.isFail = isFail;
     this.model.resultPoints = this.model.resultGame()
     Router.showResult(this.model, isFail);

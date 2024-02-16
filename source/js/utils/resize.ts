@@ -1,4 +1,4 @@
-export const resize = (frame, image) => {
+export const resize = (frame: any, image: any) => {
   let multiplier = 1;
 
   if (image.width > frame.width) {

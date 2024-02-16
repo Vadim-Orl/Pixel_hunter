@@ -1,16 +1,19 @@
 import utils from '../utils/utils.js';
 import IntroView from '../view/intro-view.js';
-import GreetingView from '../view/Greeting-view.js';
+
 import RulesView from '../view/Rules-view.js';
-import QuestModel from '../model/quest-model.js';
+import QuestModel, { IQuestModel } from '../model/quest-model.js';
 import FinelyStatisticView from '../view/FinelyStatistic-view.js';
 import GameScreen from '../model/game-screen.js';
-import HeaderView from '../view/Header-view.js';
+import HeaderView from '../view/Header-view';
 import SplashScreen from '../view/Splash-view.js';
 import ErrorView from '../view/Error-view.js';
 import Loader from '../utils/loader.js';
+import { IStateGame } from '../utils/bisnesFunction.js';
+import GreetingView from '../view/Greeting-view.js';
+import { IGameData } from '../../types/types.js';
 
-let questData;
+let questData: IGameData[];
 let questResult;
 
 export default class Router {
@@ -26,7 +29,9 @@ export default class Router {
       questData = await Loader.testData();
       Router.showWellcom();
     } catch (e) {
-      Router.showError(e);
+      if (e instanceof Error) {
+        Router.showError(e);
+      }
     } finally {
       splash.stop()
     }
@@ -51,7 +56,7 @@ export default class Router {
     utils.showScreen(utils.newCentralContainer(header, rulesScreen));
   }
 
-  public static showGame(namePlayel) {
+  public static showGame(namePlayel: string) {
     const gameModel = new QuestModel(questData, namePlayel);
     const gameScreen = new GameScreen(gameModel);
 
@@ -59,7 +64,7 @@ export default class Router {
     gameScreen.startGame();
   }
 
-  static async showResult(game, isFail) {
+  public static async showResult(game: IQuestModel, isFail: boolean) {
     const header = new HeaderView();
     const finelStatistic = new FinelyStatisticView(game, isFail);
 
@@ -68,13 +73,15 @@ export default class Router {
       questResult = await Loader.loadResult();
       finelStatistic.showScores(questResult);
     } catch (e) {
-      Router.showError(e);
+      if (e instanceof TypeError) {
+        Router.showError(e);
+      }
     }
 
     Loader.saveResults(game);
   }
 
-  static showError(error) {
+  public static showError(error: Error) {
     const errorScreen = new ErrorView(error);
     utils.showScreen(utils.newCentralContainer(errorScreen));
   }
