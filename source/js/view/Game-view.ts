@@ -1,13 +1,11 @@
-import AbstractView from './Abstract-view.js'
-import typeQuestion from '../utils/typeQuestion.js';
-import { resize, libraryFrame } from '../utils/resize.js';
+import AbstractView from './Abstract-view'
+import typeQuestion from '../utils/typeQuestion';
+import { resize, libraryFrame } from '../utils/resize';
+import { IGameData } from '../../types/types';
 
 export default class GameView extends AbstractView {
-  constructor(data, state) {
-    super('div', { classes: ['game'] })
-
-    this.data = data;
-    this.state = state;
+  constructor(public data: IGameData, public state: any) {
+    super('div',  ['game'] )
   }
 
   get template() {
@@ -15,17 +13,15 @@ export default class GameView extends AbstractView {
     ${typeQuestion[this.data.type](this.data.options)}`
   }
 
-  onAnswer() {
-  }
 
   bind() {
     const gameForm = this.element.querySelector('.game__content');
     console.dir(this.data)
     switch (this.data.type) {
       case 'singleQuestion': {
-        gameForm.addEventListener('input', (evt) => {
+        gameForm?.addEventListener('input', (evt) => {
           evt.preventDefault();
-          const checkedQuestion = gameForm.querySelector('input[name="question1"]:checked');
+          const checkedQuestion: HTMLInputElement | null = gameForm.querySelector('input[name="question1"]:checked');
           if (checkedQuestion) {
             this.onAnswer(checkedQuestion.value);
           }
@@ -34,11 +30,11 @@ export default class GameView extends AbstractView {
 
       case 'doubleQuestion':{
         console.log('111')
-        gameForm.addEventListener('input', (evt) => {
+        gameForm?.addEventListener('input', (evt) => {
           evt.preventDefault();
 
-          const checkedQuestion1 = gameForm.querySelector('input[name="question1"]:checked');
-          const checkedQuestion2 = gameForm.querySelector('input[name="question2"]:checked');
+          const checkedQuestion1: HTMLInputElement | null = gameForm.querySelector('input[name="question1"]:checked');
+          const checkedQuestion2: HTMLInputElement | null = gameForm.querySelector('input[name="question2"]:checked');
           if (checkedQuestion1 && checkedQuestion2) {
             this.onAnswer(checkedQuestion1.value, checkedQuestion2.value);
           }
@@ -46,19 +42,28 @@ export default class GameView extends AbstractView {
         break;}
 
       case 'tripleQuestion': {
-        const listGameOption = this.element.querySelectorAll('.game__option');
+        const listGameOption: NodeListOf<HTMLDivElement> = this.element.querySelectorAll('.game__option');
+
          Array.from(listGameOption).forEach((el) => {
-           el.addEventListener('click', (evt) => {
+           el.addEventListener('click', (evt: Event) => {
              evt.preventDefault();
-             this.onAnswer(evt.target.firstElementChild);
+             if (evt.target){
+              const target = evt.target as HTMLDivElement
+              this.onAnswer(target.firstElementChild);
+             }
+
            })
          });
       }
     }
   }
 
+  onAnswer(value: string| Element | null, string?) {
+    throw new Error('Method not implemented.');
+  }
+
   resizeImages() {
-    const images = this.element.querySelectorAll('.game__option img');
+    const images = this.element.querySelectorAll('.game__option img') as NodeListOf<HTMLImageElement>;
     [...images].forEach((img) => {
       img.addEventListener('load', () => {
         const newSize = resize(

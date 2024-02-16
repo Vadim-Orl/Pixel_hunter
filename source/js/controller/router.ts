@@ -14,12 +14,11 @@ let questData;
 let questResult;
 
 export default class Router {
-  static start() {
+  public static start() {
     Router.load().catch(Router.showError);
-    console.log(Array(6).fill('1').map((el)=>el))
   }
 
-  static async load() {
+  public static async load() {
     const splash = new SplashScreen();
     utils.showScreen(utils.newCentralContainer(splash));
     splash.start();
@@ -33,26 +32,26 @@ export default class Router {
     }
   }
 
-  static showWellcom() {
+  public static showWellcom() {
     const introScreen = new IntroView()
     utils.showScreen(utils.newCentralContainer(introScreen))
   }
 
-  static showGreeting() {
+  public static showGreeting() {
     const header = new HeaderView();
     const greetingScreen = new GreetingView();
 
     utils.showScreen(utils.newCentralContainer(header, greetingScreen));
   }
 
-  static showRules() {
+  public static showRules() {
     const header = new HeaderView();
     const rulesScreen = new RulesView();
 
     utils.showScreen(utils.newCentralContainer(header, rulesScreen));
   }
 
-  static showGame(namePlayel) {
+  public static showGame(namePlayel) {
     const gameModel = new QuestModel(questData, namePlayel);
     const gameScreen = new GameScreen(gameModel);
 

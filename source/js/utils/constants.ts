@@ -1,3 +1,5 @@
+// typescript dev dive
+
 const CONSTANTS = {
   OPTION_GAME: {
     MAX_QUESTIONS: 10,

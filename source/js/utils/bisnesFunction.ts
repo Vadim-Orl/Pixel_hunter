@@ -1,6 +1,15 @@
 import { CONSTANTS } from "./constants.js";
 
-const INITIAL_GAME = Object.freeze({
+export interface IInitialGame {
+   results?,
+   level: number,
+   lives: number,
+   time: number,
+   questions: number
+}
+
+
+const INITIAL_GAME: IInitialGame = Object.freeze({
   results: Object.freeze(new Array(CONSTANTS.OPTION_GAME.MAX_QUESTIONS).fill(CONSTANTS.LIBRARY_TYPE_ANSWERS.unknown)),
   level: CONSTANTS.OPTION_GAME.START_LEVEL,
   lives: CONSTANTS.OPTION_GAME.MAX_LIVES,
@@ -8,11 +17,11 @@ const INITIAL_GAME = Object.freeze({
   questions: CONSTANTS.OPTION_GAME.MAX_QUESTIONS
 });
 
-const resultGame = (game) => {
+const resultGame = (game: IInitialGame) => {
   if (game.results.length < CONSTANTS.OPTION_GAME.MAX_QUESTIONS) {
     return -1
   }
-  
+
   let summ = 0;
   game.results.forEach(element => {
     summ += CONSTANTS.LIBRARY_ANSWER_POINT[element];
@@ -25,7 +34,7 @@ const resultGame = (game) => {
 }
 
 
-const changeLevel = (game, level) => {
+const changeLevel = (game: IInitialGame, level: number) => {
   if (level < 0) {
     return game.level;
   }
@@ -40,7 +49,7 @@ const changeLevel = (game, level) => {
   return newGame;
 }
 
-const decLives = (game) => {
+const decLives = (game: IInitialGame) => {
   if (game.lives < 1) {
     return 0;
   }
@@ -52,13 +61,13 @@ const decLives = (game) => {
   return newGame;
 }
 
-const tick = (game) => {
+const tick = (game: IInitialGame) => {
   const newGame = { ...game };
   newGame.time -= 1;
   return newGame;
 }
 
-const answer = (game, isCorrectAnsw, timeAnswer) => {
+const answer = (game: IInitialGame, isCorrectAnsw: boolean, timeAnswer: number) => {
   let newGame = JSON.parse(JSON.stringify(game))
 
   if (!isCorrectAnsw) {

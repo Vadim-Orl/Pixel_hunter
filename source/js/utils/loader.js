@@ -2,7 +2,6 @@ import GAME_DATA from '../tmp/game-data.js'
 
 const SERVER_URL = 'http://localhost:3001';
 
-
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response;

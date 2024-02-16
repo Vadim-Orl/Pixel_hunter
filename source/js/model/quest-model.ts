@@ -3,14 +3,10 @@ import {
 } from '../utils/bisnesFunction.js';
 
 export default class QuestModel {
-  constructor(data, playerName) {
-    this.playerName = playerName;
-    this.data = data;
-    this.restart();
-  }
+  private _state: any;
 
-  restart() {
-    this._state = INITIAL_GAME;
+  constructor(public data: Date, public playerName: string) {
+    this.restart();
   }
 
   get state() {

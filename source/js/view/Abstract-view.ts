@@ -1,4 +1,4 @@
-const render = (template, tag, classes) => {
+const render = (template: string, tag: string, classes: string[]) => {
   const newNode = document.createElement(tag);
   classes.forEach((el) => {
     newNode.classList.add(el)
@@ -8,17 +8,17 @@ const render = (template, tag, classes) => {
   return newNode;
 };
 
-class AbstractView {
-  constructor(tag = 'div', { classes } = { classes: [] }) {
+abstract class AbstractView {
+  _element: HTMLElement;
+
+  constructor(public tag = 'div', public classes = [''] ) {
     if (new.target === AbstractView) {
       throw new Error('Can\'t instantiate AbstractView, only concrete one');
     }
-    this.tag = tag;
-    this.classes = classes;
   }
 
-  get template() {
-    throw new Error('Template is required');
+  get template():string {
+    return '';
   }
 
   get element() {
@@ -30,11 +30,11 @@ class AbstractView {
     return this._element;
   }
 
-  render() {
+  private render() {
     return render(this.template, this.tag, this.classes);
   }
 
-  bind() {}
+  protected bind(_element: HTMLElement) {}
 }
 
 export default AbstractView;
