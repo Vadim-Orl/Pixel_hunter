@@ -1,5 +1,5 @@
-import { isGameModel } from '../../types/type-guards.js';
-import { IGameData } from '../../types/types.js';
+import { isGameModel } from '../types/type-guards.js';
+import { IGameData } from '../types/types.js';
 import {
   INITIAL_GAME, changeLevel, tick, resultGame, answer, decLives, IStateGame,
 } from '../utils/bisnesFunction.js';

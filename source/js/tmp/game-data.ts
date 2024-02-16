@@ -1,4 +1,4 @@
-import { IGameData } from "../../types/types";
+import { IGameData } from "../types/types.ts";
 
 
 const GAME_DATA: IGameData[] = [

@@ -5,12 +5,12 @@ import RulesView from '../view/Rules-view.js';
 import QuestModel, { IQuestModel } from '../model/quest-model.js';
 import FinelyStatisticView from '../view/FinelyStatistic-view.js';
 import GameScreen from '../model/game-screen.js';
-import HeaderView from '../view/Header-view';
+import HeaderView from '../view/Header-view.js';
 import SplashScreen from '../view/Splash-view.js';
 import ErrorView from '../view/Error-view.js';
 import Loader from '../utils/loader.js';
 import GreetingView from '../view/Greeting-view.js';
-import { IGameData } from '../../types/types.js';
+import { IGameData } from '../types/types.js';
 
 let questData: IGameData[];
 let questResult;

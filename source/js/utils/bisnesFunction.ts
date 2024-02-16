@@ -1,4 +1,4 @@
-import { isGameModel } from "../../types/type-guards.js";
+import { isGameModel } from "../types/type-guards.js";
 import { CONSTANTS, TLIBRARY_TYPE_ANSWERS } from "./constants.js";
 
 type TResul = 'wrong' | 'slow' |'fast'| 'correct' | 'unknown'

@@ -1,5 +1,6 @@
 import Router from "./controller/router.js";
-Router.showWellcom();
+// Router.showWellcom();
 // Router.showGame('12');
+Router.start();
 
-console.log('hello!!')
+console.log('hello!12121212!')

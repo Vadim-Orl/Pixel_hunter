@@ -1,4 +1,4 @@
-import { IGameData, IResultGame } from '../../types/types.js';
+import { IGameData, IResultGame } from '../types/types.js';
 import { IQuestModel } from '../model/quest-model.js';
 import GAME_DATA from '../tmp/game-data.js'
 

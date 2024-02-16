@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "npm start",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "lint": "eslint ./source/js",
     "lint:fix": "eslint ./source/js --fix",
     "start": "gulp",
@@ -78,6 +78,7 @@
   "dependencies": {
     "chai": "^4.3.10",
     "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "mocha": "^10.2.0",
     "server": "^1.0.38",
     "watcher": "^2.3.0"

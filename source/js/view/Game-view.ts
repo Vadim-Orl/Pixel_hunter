@@ -1,7 +1,7 @@
-import AbstractView from './Abstract-view'
-import typeQuestion from '../utils/typeQuestion';
-import { resize, libraryFrame } from '../utils/resize';
-import { IGameData } from '../../types/types';
+import AbstractView from './Abstract-view.js'
+import typeQuestion from '../utils/typeQuestion.js';
+import { resize, libraryFrame } from '../utils/resize.js';
+import { IGameData } from '../types/types.js';
 
 export default class GameView extends AbstractView {
   constructor(public data: IGameData, public state: any) {
@@ -56,6 +56,9 @@ export default class GameView extends AbstractView {
          });
       }
     }
+  }
+  onAnswer(value: any, value2?: any) {
+    throw new Error('Method not implemented.');
   }
 
   // onAnswer() {

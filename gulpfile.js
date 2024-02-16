@@ -10,6 +10,7 @@ const clear = require('./task/clear.js');
 const html = require('./task/html.js');
 const scss = require('./task/scss.js');
 const js = require('./task/js.js');
+const ts = require('./task/ts.js');
 const img = require('./task/img.js');
 const test = require('./task/test.js');
 const photos = require('./task/photos.js');
@@ -20,6 +21,7 @@ const watcher = () => {
   watch(path.html.watch, html).on('all', browserSync.reload);
   watch(path.scss.watch, scss).on('all', browserSync.reload);
   watch(path.js.watch, js).on('all', browserSync.reload);
+  watch(path.ts.watch, ts).on('all', browserSync.reload);
   watch(path.js.watch, js).on('all',test);
   watch(path.img.watch, img).on('all', browserSync.reload);
   watch(path.photos.watch, photos).on('all', browserSync.reload);
@@ -38,8 +40,8 @@ const server = () => {
 
 const build = series(
   clear,
-  parallel(scss, html, js, img, fonts, photos),
-)
+  parallel(scss, html, js, img, fonts, photos, ts),
+);
 
 // Сборка
 const dev = series(
@@ -56,6 +58,7 @@ const runTests = series(
 exports.html = html;
 exports.scss = scss;
 exports.js = js;
+exports.ts = ts;
 exports.img = img;
 exports.photos = photos;
 exports.fonts = fonts;

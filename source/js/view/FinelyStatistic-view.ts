@@ -1,6 +1,5 @@
 import AbstractView from './Abstract-view.js';
 import { CONSTANTS } from '../utils/constants.js';
-import { IStateGame } from '../utils/bisnesFunction.js';
 import { IQuestModel } from '../model/quest-model.js';
 
 const statsBonusHtml = {
