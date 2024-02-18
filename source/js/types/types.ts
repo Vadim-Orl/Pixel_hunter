@@ -13,12 +13,13 @@ export enum TypeQuestion {
 
 export type ITypeQuestion = `${TypeQuestion}`
 export type ITypeInputName = `${TypeInputName}`
+export type TypeVarAnswer = 'paint' | 'photo'
 
 export interface IOption {
   alt: string,
   src: string,
   inputName?: ITypeInputName,
-  answer: 'paint' | 'photo'
+  answer: TypeVarAnswer
 }
 
 export interface IGameData {

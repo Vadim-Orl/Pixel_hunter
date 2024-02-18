@@ -19,7 +19,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["source"]
+  "include": ["source", "source/js/types"]
 }
 
 // "dev": "concurrently \"npm run server\" \"npm start\"",

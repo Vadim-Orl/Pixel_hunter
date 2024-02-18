@@ -6,7 +6,7 @@ import QuestModel, { IQuestModel } from '../model/quest-model.js';
 import FinelyStatisticView from '../view/FinelyStatistic-view.js';
 import GameScreen from '../model/game-screen.js';
 import HeaderView from '../view/Header-view.js';
-import SplashScreen from '../view/Splash-view.js';
+// import SplashScreen from '../view/Splash-view.js';
 import ErrorView from '../view/Error-view.js';
 import Loader from '../utils/loader.js';
 import GreetingView from '../view/Greeting-view.js';
@@ -21,9 +21,9 @@ export default class Router {
   }
 
   public static async load() {
-    const splash = new SplashScreen();
-    utils.showScreen(utils.newCentralContainer(splash));
-    splash.start();
+    // const splash = new SplashScreen();
+    // utils.showScreen(utils.newCentralContainer(splash));
+    // splash.start();
     try {
       questData = await Loader.testData();
       Router.showWellcom();
@@ -32,7 +32,7 @@ export default class Router {
         Router.showError(e);
       }
     } finally {
-      splash.stop()
+      // splash.stop()
     }
   }
 

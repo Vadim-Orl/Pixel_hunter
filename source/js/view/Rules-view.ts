@@ -57,8 +57,9 @@ export default class RulesView extends AbstractView {
         }
 
         inputName.reportValidity();
-
-        inputName.addEventListener('input', onNameInputValid)
+      }
+    }
+        inputName?.addEventListener('input', onNameInputValid)
 
         if (rulesForm) {
           rulesForm.onsubmit = () => {
@@ -67,9 +68,8 @@ export default class RulesView extends AbstractView {
         }
 
         btnSubmitForm?.addEventListener('click', () => {
-          this.onAnswer(inputName.value)
+          this.onAnswer(inputName?.value)
         })
-      }
     }
   }
-}
+

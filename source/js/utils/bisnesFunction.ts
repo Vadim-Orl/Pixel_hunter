@@ -1,11 +1,11 @@
 import { isGameModel } from "../types/type-guards.js";
-import { CONSTANTS, TLIBRARY_TYPE_ANSWERS } from "./constants.js";
+import { CONSTANTS } from "./constants.js";
 
 type TResul = 'wrong' | 'slow' |'fast'| 'correct' | 'unknown'
 
 
 export interface IStateGame {
-   results: any,
+   results: TResul[],
    level: number,
    lives: number,
    time: number,

@@ -1,3 +1,6 @@
+import gameScreen from "../model/game-screen.js";
+import AbstractView from "../view/Abstract-view.js";
+
 const mainNode = document.querySelector('.central');
 
 const screenContainer = document.createElement('div');
@@ -9,7 +12,7 @@ export default {
     mainNode?.append(element);
   },
 
-  newCentralContainer(...listEl: any[]) {
+  newCentralContainer(...listEl: AbstractView[] | gameScreen[]) {
     screenContainer.innerHTML = '';
     listEl.forEach((el) => {
       screenContainer.appendChild(el.element);

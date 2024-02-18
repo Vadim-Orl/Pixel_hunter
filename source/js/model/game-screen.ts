@@ -3,6 +3,7 @@ import Router from '../controller/router.js';
 import HeaderView from '../view/Header-view.js';
 import StatisticView from '../view/Statistic-view.js';
 import { IQuestModel } from './quest-model.js';
+import { TypeVarAnswer } from '../types/types.js';
 
 const ONE_SECOND = 1000;
 const showPlayerHeader = true;
@@ -78,7 +79,7 @@ export default class GameScreen {
     }
   }
 
-  onAnswer(...answer: any) {
+  onAnswer(...answer: any[]) {
     this.stopGame();
 
     const questionBd = this.model.data[this.model.getCurrentLevel()];
@@ -94,9 +95,12 @@ export default class GameScreen {
         break;
 
       case 'tripleQuestion':
-        findElement = questionBd.options.find((el) => {
-          return el.alt === answer[0].alt;
-        })
+        // if ((typeof answer[0] )!== 'string') {
+          findElement = questionBd.options.find((el) => {
+            return el.alt === answer[0].alt;
+          })
+        // }
+
         isCorrectAnsw = (findElement?.answer === 'paint');
 
         break;
