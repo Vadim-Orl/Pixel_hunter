@@ -4,6 +4,7 @@ import HeaderView from '../view/Header-view.js';
 import StatisticView from '../view/Statistic-view.js';
 import { IQuestModel } from './quest-model.js';
 import { TypeVarAnswer } from '../types/types.js';
+import { isStringArr } from '../types/type-guards.js';
 
 const ONE_SECOND = 1000;
 const showPlayerHeader = true;
@@ -79,7 +80,7 @@ export default class GameScreen {
     }
   }
 
-  onAnswer(...answer: any[]) {
+  onAnswer(...answer:  HTMLImageElement[]) {
     this.stopGame();
 
     const questionBd = this.model.data[this.model.getCurrentLevel()];
@@ -89,17 +90,19 @@ export default class GameScreen {
     switch (questionBd.type) {
       case 'singleQuestion':
       case 'doubleQuestion':
-        isCorrectAnsw = answer.every((el: any, index: number) => {
-          return (questionBd.options[index].answer === el)
-        })
+        if (isStringArr(answer)) {
+          isCorrectAnsw = answer.every((el: string, index: number) => {
+            return (questionBd.options[index].answer === el)
+          })
+        }
         break;
 
       case 'tripleQuestion':
-        // if ((typeof answer[0] )!== 'string') {
+         if (answer[0] instanceof HTMLImageElement) {
           findElement = questionBd.options.find((el) => {
             return el.alt === answer[0].alt;
           })
-        // }
+        }
 
         isCorrectAnsw = (findElement?.answer === 'paint');
 
