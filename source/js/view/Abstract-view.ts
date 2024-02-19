@@ -1,7 +1,8 @@
 const render = (template: string, tag: string, classes: string[]) => {
+  console.log(classes)
   const newNode = document.createElement(tag);
   classes.forEach((el) => {
-    newNode.classList.add(el)
+    if (el) newNode.classList.add(el)
   })
 
   newNode.innerHTML = template;

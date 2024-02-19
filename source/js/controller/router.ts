@@ -11,19 +11,22 @@ import ErrorView from '../view/Error-view.js';
 import Loader from '../utils/loader.js';
 import GreetingView from '../view/Greeting-view.js';
 import { IGameData } from '../types/types.js';
+import SplashScreen from '../view/Splash-view.js';
 
 let questData: IGameData[];
-let questResult;
+let questResult: any[];
 
 export default class Router {
   public static start() {
     Router.load().catch(Router.showError);
   }
 
+  //используются тестовые данные
   public static async load() {
-    // const splash = new SplashScreen();
-    // utils.showScreen(utils.newCentralContainer(splash));
-    // splash.start();
+    const splash = new SplashScreen();
+    utils.showScreen(utils.newCentralContainer(splash));
+    splash.start();
+    debugger
     try {
       questData = await Loader.testData();
       Router.showWellcom();
@@ -32,7 +35,7 @@ export default class Router {
         Router.showError(e);
       }
     } finally {
-      // splash.stop()
+      splash.stop()
     }
   }
 
