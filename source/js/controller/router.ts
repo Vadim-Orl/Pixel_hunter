@@ -23,10 +23,11 @@ export default class Router {
 
   //используются тестовые данные
   public static async load() {
+    
     const splash = new SplashScreen();
     utils.showScreen(utils.newCentralContainer(splash));
     splash.start();
-    debugger
+
     try {
       questData = await Loader.testData();
       Router.showWellcom();

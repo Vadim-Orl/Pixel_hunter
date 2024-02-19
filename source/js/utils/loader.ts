@@ -41,7 +41,7 @@ export default class Loader {
     return toJSON(res) as IResultGame[];
   }
 
-  static async saveResults(data: IQuestModel) {
+  static async saveResults(data: IQuestModel): Promise<Response> {
     const statData = adaptDataForServer(data);
     const requestSettings = {
       body: JSON.stringify(statData),
