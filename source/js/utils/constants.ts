@@ -23,8 +23,7 @@ const CONSTANTS = {
     correct: 'correct',
     unknown: 'unknown',
   } as const,
-};
-//  export type TLIBRARY_TYPE_ANSWERS = typeof CONSTANTS.LIBRARY_TYPE_ANSWERS
+} as const
 
 
 const STATIC_HTML = {

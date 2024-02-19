@@ -1,17 +1,6 @@
 import { isGameModel } from "../types/type-guards.js";
+import { IStateGame, TResul } from "../types/types.js";
 import { CONSTANTS } from "./constants.js";
-
-type TResul = 'wrong' | 'slow' |'fast'| 'correct' | 'unknown'
-
-
-export interface IStateGame {
-   results: TResul[],
-   level: number,
-   lives: number,
-   time: number,
-   questions: number
-}
-
 
 const INITIAL_GAME: IStateGame = Object.freeze({
   results: new Array(CONSTANTS.OPTION_GAME.MAX_QUESTIONS).fill(CONSTANTS.LIBRARY_TYPE_ANSWERS.unknown),
@@ -101,5 +90,5 @@ const answer = (game: IStateGame, isCorrectAnsw: boolean, timeAnswer: number) =>
   return newGame;
 }
 
-export  {INITIAL_GAME, changeLevel, decLives, tick, resultGame, answer}
+export { INITIAL_GAME, changeLevel, decLives, tick, resultGame, answer };
 

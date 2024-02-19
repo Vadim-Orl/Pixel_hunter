@@ -1,4 +1,4 @@
-import { IStateGame } from "../utils/bisnesFunction";
+import { IStateGame } from "./types.js";
 
 export function isGameModel(model: IStateGame | Error | number): model is IStateGame{
   return (model as IStateGame).level !== undefined;

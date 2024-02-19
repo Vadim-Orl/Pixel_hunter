@@ -1,8 +1,9 @@
 import { isGameModel } from '../types/type-guards.js';
 import { IGameData } from '../types/types.js';
 import {
-  INITIAL_GAME, changeLevel, tick, resultGame, answer, decLives, IStateGame,
+  INITIAL_GAME, changeLevel, tick, resultGame, answer, decLives,
 } from '../utils/bisnesFunction.js';
+import { IStateGame } from '../types/types.js';
 
 export interface IQuestModel {
   resultPoints: number;
