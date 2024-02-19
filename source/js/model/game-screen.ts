@@ -80,7 +80,7 @@ export default class GameScreen {
     }
   }
 
-  onAnswer(...answer:  HTMLImageElement[]) {
+  onAnswer(...answer:  HTMLImageElement[] | string[]) {
     this.stopGame();
 
     const questionBd = this.model.data[this.model.getCurrentLevel()];
@@ -98,7 +98,7 @@ export default class GameScreen {
         break;
 
       case 'tripleQuestion':
-         if (answer[0] instanceof HTMLImageElement) {
+         if (!isStringArr(answer)) {
           findElement = questionBd.options.find((el) => {
             return el.alt === answer[0].alt;
           })
