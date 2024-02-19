@@ -390,6 +390,23 @@
         "unknown"
       ],
       "id": 18
+    },
+    {
+      "isFail": true,
+      "resultPoints": 900,
+      "results": [
+        "fast",
+        "fast",
+        "wrong",
+        "fast",
+        "fast",
+        "fast",
+        "wrong",
+        "fast",
+        "wrong",
+        "unknown"
+      ],
+      "id": 19
     }
   ]
 }

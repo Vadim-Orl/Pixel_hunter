@@ -1,28 +1,22 @@
 import AbstractView from './Abstract-view.js';
 import Application from '../controller/router.js';
-
 export default class IntroView extends AbstractView {
-  constructor() {
-    super('div', { classes: ['intro'] })
-  }
-
-  get template() {
-    return ` <h1 class="intro__asterisk">*</h1>
+    constructor() {
+        super('div', ['intro']);
+    }
+    get template() {
+        return ` <h1 class="intro__asterisk">*</h1>
               <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    `
-  }
-
-  onAnswer() {
-    Application.showGreeting();
-  }
-
-  bind() {
-    this._element.querySelector('.intro__asterisk').addEventListener('click', (evt) => {
-      evt.preventDefault();
-      this.onAnswer()
-    })
-  }
+    `;
+    }
+    onAnswer() {
+        Application.showGreeting();
+    }
+    bind() {
+        this._element && this._element.querySelector('.intro__asterisk')?.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this.onAnswer();
+        });
+    }
 }
-
-//# sourceMappingURL=intro-view.js.map
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJ2aWV3L2ludHJvLXZpZXcuanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEFic3RyYWN0VmlldyBmcm9tICcuL0Fic3RyYWN0LXZpZXcuanMnO1xuaW1wb3J0IEFwcGxpY2F0aW9uIGZyb20gJy4uL2NvbnRyb2xsZXIvcm91dGVyLmpzJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgSW50cm9WaWV3IGV4dGVuZHMgQWJzdHJhY3RWaWV3IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoJ2RpdicsIHsgY2xhc3NlczogWydpbnRybyddIH0pXG4gIH1cblxuICBnZXQgdGVtcGxhdGUoKSB7XG4gICAgcmV0dXJuIGAgPGgxIGNsYXNzPVwiaW50cm9fX2FzdGVyaXNrXCI+KjwvaDE+XG4gICAgICAgICAgICAgIDxwIGNsYXNzPVwiaW50cm9fX21vdHRvXCI+PHN1cD4qPC9zdXA+INCt0YLQviDQvdC1INGE0L7RgtC+LiDQrdGC0L4g0YDQuNGB0YPQvdC+0Log0LzQsNGB0LvQvtC8INC90LjQtNC10YDQu9Cw0L3QtNGB0LrQvtCz0L4g0YXRg9C00L7QttC90LjQutCwLdGE0L7RgtC+0YDQtdCw0LvQuNGB0YLQsCBUamFsZiBTcGFybmFheS48L3A+XG4gICAgYFxuICB9XG5cbiAgb25BbnN3ZXIoKSB7XG4gICAgQXBwbGljYXRpb24uc2hvd0dyZWV0aW5nKCk7XG4gIH1cblxuICBiaW5kKCkge1xuICAgIHRoaXMuX2VsZW1lbnQucXVlcnlTZWxlY3RvcignLmludHJvX19hc3RlcmlzaycpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKGV2dCkgPT4ge1xuICAgICAgZXZ0LnByZXZlbnREZWZhdWx0KCk7XG4gICAgICB0aGlzLm9uQW5zd2VyKClcbiAgICB9KVxuICB9XG59XG4iXSwiZmlsZSI6ImludHJvLXZpZXcuanMifQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpZXcvaW50cm8tdmlldy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLFlBQVksTUFBTSxvQkFBb0IsQ0FBQztBQUM5QyxPQUFPLFdBQVcsTUFBTSx5QkFBeUIsQ0FBQztBQUVsRCxNQUFNLENBQUMsT0FBTyxPQUFPLFNBQVUsU0FBUSxZQUFZO0lBQ2pEO1FBQ0UsS0FBSyxDQUFDLEtBQUssRUFBRSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUE7SUFDekIsQ0FBQztJQUVELElBQUksUUFBUTtRQUNWLE9BQU87O0tBRU4sQ0FBQTtJQUNILENBQUM7SUFFRCxRQUFRO1FBQ04sV0FBVyxDQUFDLFlBQVksRUFBRSxDQUFDO0lBQzdCLENBQUM7SUFFRCxJQUFJO1FBQ0YsSUFBSSxDQUFDLFFBQVEsSUFBSSxJQUFJLENBQUMsUUFBUSxDQUFDLGFBQWEsQ0FBQyxrQkFBa0IsQ0FBQyxFQUFFLGdCQUFnQixDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsRUFBRSxFQUFFO1lBQ2xHLEdBQUcsQ0FBQyxjQUFjLEVBQUUsQ0FBQztZQUNyQixJQUFJLENBQUMsUUFBUSxFQUFFLENBQUE7UUFDakIsQ0FBQyxDQUFDLENBQUE7SUFDSixDQUFDO0NBQ0YiLCJmaWxlIjoidmlldy9pbnRyby12aWV3LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEFic3RyYWN0VmlldyBmcm9tICcuL0Fic3RyYWN0LXZpZXcuanMnO1xuaW1wb3J0IEFwcGxpY2F0aW9uIGZyb20gJy4uL2NvbnRyb2xsZXIvcm91dGVyLmpzJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgSW50cm9WaWV3IGV4dGVuZHMgQWJzdHJhY3RWaWV3IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoJ2RpdicsIFsnaW50cm8nXSlcbiAgfVxuXG4gIGdldCB0ZW1wbGF0ZSgpIHtcbiAgICByZXR1cm4gYCA8aDEgY2xhc3M9XCJpbnRyb19fYXN0ZXJpc2tcIj4qPC9oMT5cbiAgICAgICAgICAgICAgPHAgY2xhc3M9XCJpbnRyb19fbW90dG9cIj48c3VwPio8L3N1cD4g0K3RgtC+INC90LUg0YTQvtGC0L4uINCt0YLQviDRgNC40YHRg9C90L7QuiDQvNCw0YHQu9C+0Lwg0L3QuNC00LXRgNC70LDQvdC00YHQutC+0LPQviDRhdGD0LTQvtC20L3QuNC60LAt0YTQvtGC0L7RgNC10LDQu9C40YHRgtCwIFRqYWxmIFNwYXJuYWF5LjwvcD5cbiAgICBgXG4gIH1cblxuICBvbkFuc3dlcigpIHtcbiAgICBBcHBsaWNhdGlvbi5zaG93R3JlZXRpbmcoKTtcbiAgfVxuXG4gIGJpbmQoKSB7XG4gICAgdGhpcy5fZWxlbWVudCAmJiB0aGlzLl9lbGVtZW50LnF1ZXJ5U2VsZWN0b3IoJy5pbnRyb19fYXN0ZXJpc2snKT8uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCAoZXZ0KSA9PiB7XG4gICAgICBldnQucHJldmVudERlZmF1bHQoKTtcbiAgICAgIHRoaXMub25BbnN3ZXIoKVxuICAgIH0pXG4gIH1cbn1cbiJdfQ==

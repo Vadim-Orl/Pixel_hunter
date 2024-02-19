@@ -1,15 +1,16 @@
 import AbstractView from './Abstract-view.js';
-
 export default class ErrorView extends AbstractView {
-  constructor(error) {
-    super('div', { classes: ['end'] });
-    this.error = error;
-  }
-
-  get template() {
-    return `<p>Произошла ошибка: ${this.error.message}</p>`
-  }
+    constructor(error) {
+        super('div', ['end']);
+        Object.defineProperty(this, "error", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: error
+        });
+    }
+    get template() {
+        return `<p>Произошла ошибка: ${this.error.message}</p>`;
+    }
 }
-
-//# sourceMappingURL=Error-view.js.map
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJ2aWV3L0Vycm9yLXZpZXcuanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEFic3RyYWN0VmlldyBmcm9tICcuL0Fic3RyYWN0LXZpZXcuanMnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBFcnJvclZpZXcgZXh0ZW5kcyBBYnN0cmFjdFZpZXcge1xuICBjb25zdHJ1Y3RvcihlcnJvcikge1xuICAgIHN1cGVyKCdkaXYnLCB7IGNsYXNzZXM6IFsnZW5kJ10gfSk7XG4gICAgdGhpcy5lcnJvciA9IGVycm9yO1xuICB9XG5cbiAgZ2V0IHRlbXBsYXRlKCkge1xuICAgIHJldHVybiBgPHA+0J/RgNC+0LjQt9C+0YjQu9CwINC+0YjQuNCx0LrQsDogJHt0aGlzLmVycm9yLm1lc3NhZ2V9PC9wPmBcbiAgfVxufVxuIl0sImZpbGUiOiJFcnJvci12aWV3LmpzIn0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpZXcvRXJyb3Itdmlldy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLFlBQVksTUFBTSxvQkFBb0IsQ0FBQztBQUU5QyxNQUFNLENBQUMsT0FBTyxPQUFPLFNBQVUsU0FBUSxZQUFZO0lBQ2pELFlBQW9CLEtBQVk7UUFDOUIsS0FBSyxDQUFDLEtBQUssRUFBRSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUM7UUFEWjs7OzttQkFBUSxLQUFLO1dBQU87SUFFaEMsQ0FBQztJQUVELElBQUksUUFBUTtRQUNWLE9BQU8sd0JBQXdCLElBQUksQ0FBQyxLQUFLLENBQUMsT0FBTyxNQUFNLENBQUE7SUFDekQsQ0FBQztDQUNGIiwiZmlsZSI6InZpZXcvRXJyb3Itdmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBBYnN0cmFjdFZpZXcgZnJvbSAnLi9BYnN0cmFjdC12aWV3LmpzJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgRXJyb3JWaWV3IGV4dGVuZHMgQWJzdHJhY3RWaWV3IHtcbiAgY29uc3RydWN0b3IocHJpdmF0ZSBlcnJvcjogRXJyb3IpIHtcbiAgICBzdXBlcignZGl2JywgWydlbmQnXSk7XG4gIH1cblxuICBnZXQgdGVtcGxhdGUoKSB7XG4gICAgcmV0dXJuIGA8cD7Qn9GA0L7QuNC30L7RiNC70LAg0L7RiNC40LHQutCwOiAke3RoaXMuZXJyb3IubWVzc2FnZX08L3A+YFxuICB9XG59XG4iXX0=
